@@ -4,16 +4,20 @@
 
 @section('content')
   <h1>{{ $post->title }}
-     @if (now()->diffInMinutes($post->created_at) < 15)
-      <span class="badge badge-secondary">New</span>
-    @endif
+    @badge([
+      'type' => 'success',
+      'show' => now()->diffInMinutes($post->created_at) < 30,
+      ])
+      New          
+    @endbadge
+    {{--  <x-badge type="info">
+      New Syntax
+    </x-badge>  --}}
   </h1>
   <p>{{ $post->content }}</p>
-  <p>Added {{ $post->created_at->diffForHumans() }}</p>
 
-  @if (now()->diffInMinutes($post->created_at) < 15)
-    <div class="alert alert-info">New!</div>
-  @endif
+  @updated(['date' => $post->created_at, 'name' => $post->user->name])
+  @endupdated
 
   <h4>Comments</h4>
   @if ($post->comments->count() )
@@ -22,6 +26,8 @@
           <li class="list-group-item">
             {{ $comment->content }} <br>
             <small class="text-muted">added {{ $comment->created_at->diffForHumans() }}</small>
+            @updated(['date' => $comment->created_at])
+            @endupdated
           </li>
       @endforeach
     </ul>

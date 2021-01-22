@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\BlogPost;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BlogPostFactory extends Factory
@@ -14,9 +15,6 @@ class BlogPostFactory extends Factory
      */
     protected $model = BlogPost::class;
 
-    private static $data;
-
-
     /**
      * Define the model's default state.
      *
@@ -27,14 +25,19 @@ class BlogPostFactory extends Factory
         return [
             'title' => $this->faker->sentence(10),
             'content' => $this->faker->paragraphs(5, true),
+            'created_at' => $this->faker->dateTimeBetween('-3 months'),
         ];
     }
 
-    public function dummyBlogForTesting($testData)
+    public function dummyBlogForTesting($data)
     {
-        self::$data = $testData;
-        return $this->state(function (array $attributes) {
-            return self::$data;
+        // if (! isset($data['user_id'])) {
+        //     $user = User::factory(1)->create()[0];
+        //     $data["user_id"] = $user->id;
+        // }
+
+        return $this->state(function (array $attributes) use($data) {
+            return $data;
         });
     }
 }
