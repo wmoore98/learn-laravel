@@ -8,7 +8,7 @@
     value="{{ old('title', optional($post ?? null)->title) }}"
   >
   @error('title')
-    <div class="alert alert-danger">{{ $message }}</div>
+    <div class="invalid-feedback">{{ $message }}</div>
   @enderror
 </div>
 
@@ -20,7 +20,7 @@
     id="content"
   >{{ old('content', optional($post ?? null)->content) }}</textarea>
   @error('content')
-    <div class="alert alert-danger">{{ $message }}</div>
+    <div class="invalid-feedback">{{ $message }}</div>
   @enderror
 </div>
 

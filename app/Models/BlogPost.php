@@ -33,6 +33,7 @@ class BlogPost extends Model
         parent::boot();
         
         static::deleting(function (BlogPost $blogPost) {
+            Cache::forget("blog-post-{$blogPost->id}");
             $blogPost->comments()->delete();
         });
 

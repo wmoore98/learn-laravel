@@ -75,9 +75,7 @@ class PostController extends Controller
     public function show($id)
     {
         $blogPost = Cache::remember("blog-post-{$id}", 60, function () use ($id) {
-            return BlogPost::with('comments')
-                ->with('user')
-                ->with('tags')
+            return BlogPost::with('comments', 'user', 'tags', 'comments.user')
                 ->findOrFail($id);
         });
 

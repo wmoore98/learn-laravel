@@ -12,7 +12,7 @@ class ActivityComposer
   public function compose(View $view)
   {
     $mostCommented = Cache::remember('blog-posts-commented', 60, function () {
-      return BlogPost::mostCommented()->take(5)->get();
+      return BlogPost::mostCommented()->withCount('comments')->take(5)->get();
     });
 
     $mostActive = Cache::remember('users-most-active', 60, function () {

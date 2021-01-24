@@ -24,7 +24,7 @@
 <x-tags>@slot('tags', $post->tags)</x-tags>
 
 @if ($post->comments_count)
-  <p>{{ $post->comments_count }} comments</p>
+  <small class="d-block text-muted mb-3">{{ $post->comments_count }} comments</small>
 @else
   <p>No comments yet!</p>
 @endif

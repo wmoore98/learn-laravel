@@ -1,10 +1,15 @@
 <div class="mb-2">
   @auth
-    <form action="#" method="POST">
+    <form action="{{ route("posts.comments.store", $post) }}" method="POST">
       @csrf
       <legend style="font-size: medium">Add a comment</legend>
       <div class="form-group">
-        <textarea name="content" class="form-control"></textarea>
+        <textarea
+          name="content"
+          class="form-control @error('content')is-invalid @enderror"></textarea>
+        @error('content')
+          <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
       </div>
       <button class="btn btn-primary btn-block" type='submit'>Add comment</button>
     </form>

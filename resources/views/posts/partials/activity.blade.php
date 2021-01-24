@@ -11,6 +11,7 @@
             <a class="card-link" href="{{ route('posts.show', ['post' => $post->id]) }}">
               {{ $post->title }}
             </a>
+            <small class='d-block'>{{ $post->comments_count }} comments</small>
           </li>
         @endforeach
       @endslot
