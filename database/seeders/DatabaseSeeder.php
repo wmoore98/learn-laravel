@@ -2,9 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\BlogPost;
-use App\Models\Comment;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +23,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             BlogPostsTableSeeder::class,
             CommentsTableSeeder::class,
+            TagsTableSeeder::class,
+            BlogPostTagTableSeeder::class,
         ]);
     }
 }

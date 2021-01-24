@@ -9971,3 +9971,6 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.badge-lg {
+  font-size: 1rem;
+}

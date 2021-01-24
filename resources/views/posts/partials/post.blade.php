@@ -22,6 +22,8 @@
   <p class="text-muted mb-0">Last updated {{ $post->updated_at->diffForHumans() }}</p>
 @endif
 
+<x-tags>@slot('tags', $post->tags)</x-tags>
+
 @if ($post->comments_count)
   <p>{{ $post->comments_count }} comments</p>
 @else
