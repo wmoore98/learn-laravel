@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Scopes\LatestScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,21 +12,18 @@ class Comment extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public static function boot()
-    {
-        parent::boot();
-
-        // static::addGlobalScope(new LatestScope);
-    }
-
     public function scopeLatest(Builder $query)
     {
         $query->orderBy(static::CREATED_AT, 'desc');
     }
 
-
     public function blogPost()
     {
         return $this->belongsTo(BlogPost::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

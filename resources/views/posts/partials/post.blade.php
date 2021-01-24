@@ -16,11 +16,10 @@
 @endupdated  --}}
 
 <x-updated date="{{ $post->created_at }}" name="{{ $post->user->name }}">
+  @if ($post->created_at->diffForHumans() !== $post->updated_at->diffForHumans())
+    @slot('lastUpdated', $post->updated_at)
+  @endif
 </x-updated>
-
-@if ($post->created_at->diffForHumans() !== $post->updated_at->diffForHumans())
-  <p class="text-muted mb-0">Last updated {{ $post->updated_at->diffForHumans() }}</p>
-@endif
 
 <x-tags>@slot('tags', $post->tags)</x-tags>
 

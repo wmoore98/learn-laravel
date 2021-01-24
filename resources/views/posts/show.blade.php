@@ -19,6 +19,9 @@
       <p>{{ $post->content }}</p>
     
       @updated(['date' => $post->created_at, 'name' => $post->user->name])
+        @if ($post->created_at->diffForHumans() !== $post->updated_at->diffForHumans())
+          @slot('lastUpdated', $post->updated_at)
+        @endif
       @endupdated
     
       <x-tags>@slot('tags', $post->tags)</x-tags>
@@ -31,8 +34,10 @@
           @foreach ($post->comments as $comment)
               <li class="list-group-item">
                 {{ $comment->content }} <br>
-                <small class="text-muted">added {{ $comment->created_at->diffForHumans() }}</small>
-                @updated(['date' => $comment->created_at])
+                @updated(['date' => $comment->created_at, 'name' => $comment->user->name])
+                  @if ($comment->created_at->diffForHumans() !== $comment->updated_at->diffForHumans())
+                    @slot('lastUpdated', $comment->updated_at)
+                  @endif
                 @endupdated
               </li>
           @endforeach
