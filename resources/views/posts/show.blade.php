@@ -29,6 +29,9 @@
       <p>Currently read by {{ $counter }} people</p>
     
       <h4>Comments</h4>
+
+      @include('comments.form')
+      
       @if ($post->comments->count() )
         <ul class='list-group'>
           @foreach ($post->comments as $comment)
