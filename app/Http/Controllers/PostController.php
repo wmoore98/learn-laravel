@@ -57,6 +57,13 @@ class PostController extends Controller
         $this->authorize(BlogPost::class);
         $validated = $request->validated();
         $validated['user_id'] = $request->user()->id;
+
+        if ($request->hasFile('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $file->store('thumbnails');
+        }
+        die;
+    
         $post = BlogPost::create($validated);
         $request->session()->flash('status', 'The blog post was created successfully');
         return redirect()->route('posts.show', [ 'post' => $post->id ]);
