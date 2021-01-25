@@ -7,6 +7,7 @@ use App\Models\BlogPost;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -57,14 +58,13 @@ class PostController extends Controller
         $this->authorize(BlogPost::class);
         $validated = $request->validated();
         $validated['user_id'] = $request->user()->id;
+        $post = BlogPost::create($validated);
 
         if ($request->hasFile('thumbnail')) {
-            $file = $request->file('thumbnail');
-            $file->store('thumbnails');
+            $path = $request->file('thumbnail')->store('thumbnails');
+            $post->image()->create(['path' => $path]);
         }
-        die;
     
-        $post = BlogPost::create($validated);
         $request->session()->flash('status', 'The blog post was created successfully');
         return redirect()->route('posts.show', [ 'post' => $post->id ]);
     }
