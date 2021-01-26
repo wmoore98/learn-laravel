@@ -16,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         BlogPost::class => BlogPostPolicy::class,
+        User::class => UserPolicy::class,
     ];
 
     /**
@@ -46,9 +47,9 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::before(function ($user, $ability) {
             // three states for return: true, false, void
-            if ($user->is_admin && in_array($ability, ['update', 'delete'])) {
-                return true;
-            }
+            // if ($user->is_admin && in_array($ability, ['update', 'delete'])) {
+            //     return true;
+            // }
 
             // reutrns void otherwise (not false)
         });
