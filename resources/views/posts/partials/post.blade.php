@@ -15,7 +15,11 @@
 {{--  @updated(['date' => $post->created_at, 'name' => $post->user->name])
 @endupdated  --}}
 
-<x-updated date="{{ $post->created_at }}" name="{{ $post->user->name }}">
+<x-updated
+  date="{{ $post->created_at }}"
+  name="{{ $post->user->name }}"
+  userId="{{ $post->user->id }}"
+>
   @if ($post->created_at->diffForHumans() !== $post->updated_at->diffForHumans())
     @slot('lastUpdated', $post->updated_at)
   @endif
