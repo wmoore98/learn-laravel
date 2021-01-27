@@ -14,13 +14,19 @@
 
     <div class="row">
       <div class="col-md-4">
-        <img src="" alt="" class="img-thumbnail avatar">
+        <img
+          src="{{ $user->image ? $user->image->url() : '' }}"
+          alt=""
+          class="img-thumbnail avatar @error('avatar')is-invalid @enderror">
         <div class="card mt-4">
           <div class="card-body">
             <h6>Upload a different photo</h6>
             <input type="file" class="form-control-file" name="avatar">
           </div>
-        </div>  
+        </div>
+        @error('avatar')
+          <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
       </div>
   
       <div class="col-md-8">
