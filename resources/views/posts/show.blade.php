@@ -39,25 +39,8 @@
     
       <h4>Comments</h4>
 
-      @include('comments.form')
-      
-      @if ($post->comments->count() )
-        <ul class='list-group'>
-          @foreach ($post->comments as $comment)
-              <li class="list-group-item">
-                {{ $comment->content }} <br>
-                @updated(['date' => $comment->created_at, 'name' => $comment->user->name])
-                  @if ($comment->created_at->diffForHumans() !== $comment->updated_at->diffForHumans())
-                    @slot('lastUpdated', $comment->updated_at)
-                  @endif
-                @endupdated
-              </li>
-          @endforeach
-        </ul>
-      @else
-        <div>No comments yet!</div>
-      @endif
-    
+      <x-comment-form route="{{ route('posts.comments.store', $post) }}"></x-comment-form>
+      <x-comment-list>@slot('comments', $post->comments)</x-comment-list>
     </div>
 
     <div class="col-4">

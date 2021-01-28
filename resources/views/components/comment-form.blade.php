@@ -1,6 +1,6 @@
 <div class="mb-2">
   @auth
-    <form action="{{ route("posts.comments.store", $post) }}" method="POST">
+    <form action="{{ $route }}" method="POST">
       @csrf
       <legend style="font-size: medium">Add a comment</legend>
       <div class="form-group">
