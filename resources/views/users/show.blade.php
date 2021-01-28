@@ -11,7 +11,7 @@
     <div class="col-md-8">
       <h3>{{ $user->name }}</h3>
       <x-comment-form route="{{ route('users.comments.store', $user) }}"></x-comment-form>
-      <x-comment-list>@slot('comments', $user->commentsOn)</x-comment-list>
+      <x-comment-list :comments="$user->commentsOn"></x-comment-list>
     </div>
   </div>
 
