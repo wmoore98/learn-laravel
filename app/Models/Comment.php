@@ -28,7 +28,7 @@ class Comment extends Model
         });
 
         static::creating(function (Comment $comment) {
-            self::clearRelatedCache($comment);
+            // self::clearRelatedCache($comment);
         });
     }
 
@@ -53,5 +53,10 @@ class Comment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
     }
 }

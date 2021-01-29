@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->morphMany(Comment::class, 'commentable')->latest();
     }
 
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
+    }
+
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');

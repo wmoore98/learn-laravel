@@ -14,7 +14,7 @@ class CreateBlogPostTagTable extends Migration
     public function up()
     {
         Schema::create('blog_post_tag', function (Blueprint $table) {
-            $table->primary(['blog_post_id', 'tag_id']);
+            $table->increments('id');
             $table->foreignId('blog_post_id')->constrained()->onDelete('cascade');
             $table->foreignId('tag_id')->constrained()->onDelete('cascade');
             $table->timestamps();
