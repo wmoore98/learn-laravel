@@ -12,6 +12,7 @@
               @slot('lastUpdated', $comment->updated_at)
             @endif
           @endupdated
+          <x-tags>@slot('tags', $comment->tags)</x-tags>
         </li>
     @endforeach
   </ul>
