@@ -12,8 +12,9 @@
 
 <hr>
 
-<p> 
-   <a href="{{ route('users.show', ['user' => $comment->user->id]) }}">
+<p>
+  <img src="{{ $message->embed(public_path('storage/' . $comment->user->image->path)) }}"/>
+  <a href="{{ route('users.show', ['user' => $comment->user->id]) }}">
     {{ $comment->user->name }}
   </a> said:
 </p>
