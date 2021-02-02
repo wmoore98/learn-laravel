@@ -21,8 +21,13 @@ class PostCommentController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
-        Mail::to($post->user)->send(new CommentPostedMarkdown($comment));
-        
+        $when = now()->addMinutes(1);
+
+        Mail::to($post->user)
+            // ->send(new CommentPostedMarkdown($comment));
+            // ->queue(new CommentPostedMarkdown($comment));
+            ->later($when, new CommentPostedMarkdown($comment));
+            
         return redirect()->back()->withStatus('The comment was created successfully');
     }
 }
