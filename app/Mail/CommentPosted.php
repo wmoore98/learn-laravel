@@ -12,7 +12,7 @@ class CommentPosted extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public Comment $comment;
+    protected Comment $comment;
 
     /**
      * Create a new message instance.

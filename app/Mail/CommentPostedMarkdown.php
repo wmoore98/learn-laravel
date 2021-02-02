@@ -12,7 +12,7 @@ class CommentPostedMarkdown extends Mailable // implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public Comment $comment;
+    public Comment $comment; // markdown seems to need this to be public when ran as a job
 
     /**
      * Create a new message instance.
