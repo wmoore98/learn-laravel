@@ -58,4 +58,11 @@ Route::get('/test', function () {
   foreach($posts as $post) {
     echo $post->user->email;
   }
+
+  // $collection = collect([1, 2, 3, 4, 5]);
+
+$posts->map(function ($item, $key) {
+    echo $key;
+});
+
 });
