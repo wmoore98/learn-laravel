@@ -8,6 +8,7 @@ use App\Http\Controllers\PostTagController;
 use App\Http\Controllers\UserCommentController;
 use App\Http\Controllers\UserController;
 use App\Mail\CommentPostedMarkdown;
+use App\Models\BlogPost;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -51,3 +52,10 @@ Route::get('mailable/{comment}', function(Comment $comment) {
 });
 
 Auth::routes();
+
+Route::get('/test', function () {
+  $posts = BlogPost::take(10)->get();
+  foreach($posts as $post) {
+    echo $post->user->email;
+  }
+});
