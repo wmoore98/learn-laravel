@@ -19,6 +19,8 @@ class ThrottledMail implements ShouldQueue
 
     public Mailable $mail;
     public User $user;
+    public $tries = 15;
+    public $timeout = 10;
 
     /**
      * Create a new job instance.
