@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostTagController;
 use App\Http\Controllers\UserCommentController;
 use App\Http\Controllers\UserController;
+use App\Mail\BlogPostAdded;
 use App\Mail\CommentPostedMarkdown;
 use App\Models\BlogPost;
 use App\Models\Comment;
@@ -47,8 +48,12 @@ Route::resource('users.comments', UserCommentController::class)->only(['store'])
 
 Route::resource('users', UserController::class)->only(['show', 'edit', 'update']);
 
-Route::get('mailable/{comment}', function(Comment $comment) {
-  return new CommentPostedMarkdown($comment);
+// Route::get('mailable/{comment}', function(Comment $comment) {
+//   return new CommentPostedMarkdown($comment);
+// });
+
+Route::get('mailable/{blogPost}', function(BlogPost $blogPost) {
+  return new BlogPostAdded($blogPost);
 });
 
 Auth::routes();
